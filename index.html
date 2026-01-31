@@ -537,6 +537,17 @@
 
     // --- Styling based on sign ---
     if (solChange < 0) {
+      pnlDiv.style.color = "#f83b17";
+      changeDiv.style.color = "#111111";
+      changeDiv.style.backgroundColor = "#f83b17";
+      solchangeDiv.style.color = "#f83b17";
+    } else {
+      pnlDiv.style.color = "#32a36d";
+      changeDiv.style.color = "#111111";
+      changeDiv.style.backgroundColor = "32a36d";
+      solchangeDiv.style.color = "#32a36d";
+    }
+    /*if (solChange < 0) {
       pnlDiv.style.color = "#e54d2e";
       changeDiv.style.color = "#e54d2e";
       changeDiv.style.backgroundColor = "rgba(229, 77, 46, 0.2)";
@@ -546,7 +557,7 @@
       changeDiv.style.color = "#30a46c";
       changeDiv.style.backgroundColor = "rgba(48, 164, 108, 0.2)";
       solchangeDiv.style.color = "#30a46c";
-    }
+    }*/
 
   } catch (err) {
     console.error("Error fetching SOL data:", err);
@@ -662,6 +673,7 @@
     </script>
 </body>
 </html>
+
 
 
 
