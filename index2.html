@@ -1,0 +1,735 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Phantom">
+    <link rel="apple-touch-icon" href="./logo.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="./logo.png">
+    <link rel="stylesheet" href="./fonts.css">
+    <link rel="manifest" href="./manifest.json">
+    <link href="./Popup.css" rel="stylesheet">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css" rel="stylesheet" type="text/css">
+    <title>Phantom</title>
+    <style>
+        #content-wrapper {
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+#tab-content {
+  height: 60px; /* height of spinner zone */
+}
+.spinner {
+  font-size: 36px;
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+}
+.spinner.center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.spinner .spinner-blade {
+  position: absolute;
+  left: 0.43em;              /* closer to center */
+  bottom: 0;
+  width: 0.084em;
+  height: 0.2777em;
+  border-radius: 0.0655em;
+  background-color: transparent;
+  transform-origin: center -0.11em;  /* slightly closer pivot */
+  animation: spinner-fade 1s infinite linear;
+}
+
+/* 8 blades = 45° apart, delay = 0.125s apart */
+.spinner .spinner-blade:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: 0s;
+}
+.spinner .spinner-blade:nth-child(2) {
+  transform: rotate(45deg);
+  animation-delay: 0.125s;
+}
+.spinner .spinner-blade:nth-child(3) {
+  transform: rotate(90deg);
+  animation-delay: 0.25s;
+}
+.spinner .spinner-blade:nth-child(4) {
+  transform: rotate(135deg);
+  animation-delay: 0.375s;
+}
+.spinner .spinner-blade:nth-child(5) {
+  transform: rotate(180deg);
+  animation-delay: 0.5s;
+}
+.spinner .spinner-blade:nth-child(6) {
+  transform: rotate(225deg);
+  animation-delay: 0.625s;
+}
+.spinner .spinner-blade:nth-child(7) {
+  transform: rotate(270deg);
+  animation-delay: 0.75s;
+}
+.spinner .spinner-blade:nth-child(8) {
+  transform: rotate(315deg);
+  animation-delay: 0.875s;
+}
+
+@keyframes spinner-fade {
+  0%   { background-color: #69717d; }
+  100% { background-color: transparent; }
+}
+        html,
+          body {
+            margin: 0;
+            min-width: 360px;
+            min-height: 600px;
+            background-color: #1f1f1f;
+          }
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, menu, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, main, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+}
+        .eqipuR {
+    padding: 15px 0px;
+    margin: 0px 12px;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+}
+.eqipuR ::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    height: 2px;
+    width: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 2px;
+    background-color: rgb(171, 159, 242);
+}
+        .iHFWRJ {
+    padding: 15px 0px;
+    margin: 0px 12px;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+}
+        .iHFWRJ ::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0px;
+    height: 2px;
+    width: 100%;
+    border-radius: 2px;
+}
+        .cDkSdw {
+    flex: 1 1 0%;
+    display: flex
+;
+    justify-content: space-around;
+    padding: 0px 10px;
+}
+        .kUahUH {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0px;
+    height: 2px;
+    background-color: rgb(171, 159, 242);
+}
+        .ktDIEy {
+    position: relative;
+    height: 60px;
+    display: flex
+;
+}
+        #solSettings {
+            position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%); /* centers it */
+          background: white;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          min-width: 250px;
+          z-index: 9999;
+            display: none;
+        }
+    </style>
+    <style id="_goober">
+        @keyframes go2264125279{from{transform:scale(0) rotate(45deg);opacity:0;}to{transform:scale(1) rotate(45deg);opacity:1;}}@keyframes go3020080000{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}@keyframes go463499852{from{transform:scale(0) rotate(90deg);opacity:0;}to{transform:scale(1) rotate(90deg);opacity:1;}}@keyframes go1268368563{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}@keyframes go1310225428{from{transform:scale(0) rotate(45deg);opacity:0;}to{transform:scale(1) rotate(45deg);opacity:1;}}@keyframes go651618207{0%{height:0;width:0;opacity:0;}40%{height:0;width:6px;opacity:1;}100%{opacity:1;height:10px;}}@keyframes go901347462{from{transform:scale(0.6);opacity:0.4;}to{transform:scale(1);opacity:1;}}.go4109123758{z-index:9999;}.go4109123758 > *{pointer-events:auto;}
+    </style>
+    <style data-styled="active" data-styled-version="6.1.19"></style>
+    <style id="detectElementResize" type="text/css">
+        @keyframes resizeanim { from { opacity: 0; } to { opacity: 0; } } .resize-triggers { animation: 1ms resizeanim; visibility: hidden; opacity: 0; } .resize-triggers, .resize-triggers > div, .contract-trigger:before { content: " "; display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; z-index: -1; } .resize-triggers > div { background: #eee; overflow: auto; } .contract-trigger:before { width: 200%; height: 200%; }
+    </style>
+</head>
+
+<body style="font-family: Inter">
+    <div id="solSettings">
+        <input id="newUser" placeholder="New username">
+        <input id="newAcc" placeholder="New account name">
+        <br><br>
+        <input id="initial" placeholder="Initial SOL">
+        <input id="after" placeholder="After Rug SOL">
+        <button id="confirmBtn">Confirm</button>
+    </div>
+    <div id="root">
+        <div class="obdlrx2x">
+            <div class="sc-hvZCij TKpht" style="    display: flex
+;
+    flex-direction: column;
+    height: 100%;">
+                <section justifycontent="space-between" height="59" class="sc-bjxVRI bZlokz" style="position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;">
+                    <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nr _51gazn1c8 _51gaznkt _51gazn1me" style="padding: 0.55rem 1rem; background-color: #1f1f1f;">
+                        <button style="height: 38px !important; width: 38px !important" data-testid="settings-menu-open-button" type="button" class="t8qixv0 t8qixvf t8qixv1 t8qixv6 t8qixve _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq _1cg1k9y3 t8qixv0 t8qixvf t8qixv1 t8qixv6 t8qixve _1cg1k9y2 _51gaznu6 _51gaznv6 _51gaznx6 _51gaznw6 _51gazn1kj _51gazn1me _51gazn1mr _51gazn1pl _51gazn1l6 _51gazn5q0 _1cg1k9y5 _1cg1k9y1 _51gazn1y4 _51gazn44v _51gazn1b4 _51gazn1cq _51gazn1t4"><span style="font-size: 18px;">💎</span></button>
+                        <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq _51gazn1c8 _51gazn1h4">
+                            <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nr _51gazn1c8 _51gazn1me _51gazn1l6">
+                                <div id="username" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn45a _51gazn15 _51gazn1kq nfn5t1d _51gazn1z _51gazn3l">@benusd</div>
+                            </div>
+                            <div class="_1mupv7ev _51gaznxg _51gazn1kj _51gazn1me" data-testid="tooltip_interactive-wrapper">
+                                <div role="button" tabindex="0" aria-pressed="false" class="_1mupv7eb _51gazn1kj _51gazn1ml _51gazn45a">
+                                    <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nr _51gazn1h4 _51gazn1me _51gazn1l6">
+                                        <div style="font-size: 1.5rem !important" id="accountName" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn44v _51gazn11 _51gazn1kq nfn5t1e _51gazn1z _51gazn3l">SpeedRug</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nr _51gazn1me">
+                            <button style="color: #FFFFFF !important" data-testid="side-panel-menu-open-button" aria-label="Open" class="nfn5t14 t8qixv0 t8qixvf t8qixv1 t8qixv6 t8qixve nfn5t10 _51gazn57 _51gazn3l _51gazn6t _51gazn1z _51gazn1kj _51gazn1me _51gazn1mz _51gazn45a nfn5t13 _51gazn44w">
+                                <svg xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" width="26" height="26" viewBox="-2 -2 24 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin" class="jam jam-qr-code"><path d="M13 18h3a2 2 0 0 0 2-2v-3a1 1 0 0 1 2 0v3a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4v-3a1 1 0 0 1 2 0v3a2 2 0 0 0 2 2h3a1 1 0 0 1 0 2h6a1 1 0 0 1 0-2zM2 7a1 1 0 1 1-2 0V4a4 4 0 0 1 4-4h3a1 1 0 1 1 0 2H4a2 2 0 0 0-2 2v3zm16 0V4a2 2 0 0 0-2-2h-3a1 1 0 0 1 0-2h3a4 4 0 0 1 4 4v3a1 1 0 0 1-2 0z" fill="#fff" style=""/></svg>
+                            </button>
+                            <button style="color: #FFFFFF !important" data-testid="search-open-button" class="nfn5t14 t8qixv0 t8qixvf t8qixv1 t8qixv6 t8qixve nfn5t10 _51gazn57 _51gazn3l _51gazn6t _51gazn1z _51gazn1kj _51gazn1me _51gazn1mz _51gazn45a nfn5t13 _51gazn44w" aria-label="Search">
+                                <svg fill="none" viewBox="0 0 24 24" width="24px" height="24px" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <div id="content-wrapper">
+                <div id="tab-content" data-testid="tab-content-/" class="sc-gyRCUT dnSVWO" style="opacity: 1; transform: none">
+                    <div style="margin-top: 1.6rem" class="spinner center">
+                        <div class="spinner-blade"></div>
+                        <div class="spinner-blade"></div>
+                        <div class="spinner-blade"></div>
+                        <div class="spinner-blade"></div>
+                        <div class="spinner-blade"></div>
+                        <div class="spinner-blade"></div>
+                        <div class="spinner-blade"></div>
+                        <div class="spinner-blade"></div>
+                      </div>
+                    <div class="sc-kSaXSp csbEDz" style="opacity: 1; transform: none; margin-top: 3.6rem">
+                        <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq _51gaznkv _51gazn6t _51gazn1lj _51gazn1lb" style="position: relative;">
+                            <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq _51gaznhp">
+                                <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq _51gaznl3">
+                                    <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq _51gaznkv _51gazn1me _51gazn1mr _51gaznex">
+                                        <div style="gap: 1rem;" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq">
+                                            <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq _51gazn1l6 _51gazn1c8 _51gazn1me">
+                                                <div style="font-size: 38px; white-space: nowrap;">
+                                                    <div id="money" style="font-size: 3rem !important" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn4fa _51gaznf">$0.00</div>
+                                                </div>
+                                            </div>
+                                            <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nr _51gazn1me _51gaznku _51gazn1mr">
+                                                <div id="pnl" style="font-weight: 600; font-size: 19px;" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn46y _51gazno _51gaznbi">+$0.00</div>
+                                                <div id="change" class="t8qixv0 t8qixv1 _51gazntd _51gaznud _51gaznwd _51gaznvd _51gazn1x _51gazn3j _51gazn53 _51gazn6p _51gazn8 _51gazn1kf _51gazn46y _51gaznv" style="background-color: rgba(48, 164, 108, 0.2); font-weight: 600; font-size: 16px;">+0.00%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="t8qixv0 t8qixv1 _51gaznbb _51gaznef _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq _51gaznl3">
+                                        <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq">
+                                            <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nr _51gaznkv _51gazn1c8">
+                                                <button style="gap: 0.4rem !important;" type="button" class="p1bbpz5 t8qixv0 t8qixvf t8qixv1 t8qixv6 t8qixve p1bbpz0 _51gazntk _51gaznuk _51gaznwk _51gaznvk _51gazn1z _51gazn3l _51gazn5b _51gazn6x _51gazn1kc _51gaznkt _51gazn5q0 _51gazn1c8 _51gazn1me _51gazn1mr _51gazn1nd _51gazn1h4 p1bbpz7 p1bbpz2 _51gazn1xp _51gazn1w2 _51gazn45a p1bbpza">
+                                                    <svg style="height: 28px; width: 28px" fill="none" viewBox="0 0 24 24" width="28px" height="28px" stroke-linecap="round" stroke-linejoin="round" class="p1bbpzf p1bbpzb _51gazn1b2 _51gazn1co p1bbpzh p1bbpzd _51gazn464">
+                                                        <path fill="currentColor" fill-rule="evenodd" d="M5.5 6.1a.6.6 0 0 1 .6-.6h.8a.6.6 0 0 1 .6.6v.8a.6.6 0 0 1-.6.6h-.8a.6.6 0 0 1-.6-.6zM5.5 17.1a.6.6 0 0 1 .6-.6h.8a.6.6 0 0 1 .6.6v.8a.6.6 0 0 1-.6.6h-.8a.6.6 0 0 1-.6-.6zM16.5 6.1a.6.6 0 0 1 .6-.6h.8a.6.6 0 0 1 .6.6v.8a.6.6 0 0 1-.6.6h-.8a.6.6 0 0 1-.6-.6z"
+                                                        clip-rule="evenodd"></path>
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3 16a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM14 5a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2z"></path>
+                                                        <path fill="currentColor" d="M13 14a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zM13 20a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zM19 20a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zM19 14a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1zM16 17a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1z"></path>
+                                                    </svg>
+                                                    <div style="color: #999" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn4fa _51gazn15 _51gazn2 _51gazn1kq p1bbpzj _51gazn1c8">Receive</div>
+                                                </button>
+                                                <button style="gap: 0.4rem !important;" type="button" class="p1bbpz5 t8qixv0 t8qixvf t8qixv1 t8qixv6 t8qixve p1bbpz0 _51gazntk _51gaznuk _51gaznwk _51gaznvk _51gazn1z _51gazn3l _51gazn5b _51gazn6x _51gazn1kc _51gaznkt _51gazn5q0 _51gazn1c8 _51gazn1me _51gazn1mr _51gazn1nd _51gazn1h4 p1bbpz7 p1bbpz2 _51gazn1xp _51gazn1w2 _51gazn45a p1bbpza">
+                                                    <svg style="height: 28px; width: 28px" fill="none" viewBox="0 0 24 24" width="28px" height="28px" stroke-linecap="round" stroke-linejoin="round" class="p1bbpzf p1bbpzb _51gazn1b2 _51gazn1co p1bbpzh p1bbpzd _51gazn464">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 14 1.972 4.93c.692 1.73 3.165 1.658 3.755-.11l4.008-12.025c.521-1.564-.966-3.051-2.53-2.53L5.18 8.273c-1.768.59-1.84 3.063-.11 3.755zm0 0 3-3"></path>
+                                                    </svg>
+                                                    <div style="color: #999" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn4fa _51gazn15 _51gazn2 _51gazn1kq p1bbpzj _51gazn1c8">Send</div>
+                                                </button>
+                                                <button style="gap: 0.4rem !important;" type="button" class="p1bbpz5 t8qixv0 t8qixvf t8qixv1 t8qixv6 t8qixve p1bbpz0 _51gazntk _51gaznuk _51gaznwk _51gaznvk _51gazn1z _51gazn3l _51gazn5b _51gazn6x _51gazn1kc _51gaznkt _51gazn5q0 _51gazn1c8 _51gazn1me _51gazn1mr _51gazn1nd _51gazn1h4 p1bbpz7 p1bbpz2 _51gazn1xp _51gazn1w2 _51gazn45a p1bbpza">
+                                                    <svg style="height: 28px; width: 28px" fill="none" viewBox="0 0 24 24" width="28px" height="28px" stroke-linecap="round" stroke-linejoin="round" class="p1bbpzf p1bbpzb _51gazn1b2 _51gazn1co p1bbpzh p1bbpzd _51gazn464">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 14-4 4m0 0 4 4m-4-4h11a4 4 0 0 0 4-4m-5-4 4-4m0 0-4-4m4 4H8a4 4 0 0 0-4 4"></path>
+                                                    </svg>
+                                                    <div style="color: #999" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn4fa _51gazn15 _51gazn2 _51gazn1kq p1bbpzj _51gazn1c8">Swap</div>
+                                                </button>
+                                                <button style="gap: 0.4rem !important;" id="openSettings" class="p1bbpz5 t8qixv0 t8qixvf t8qixv1 t8qixv6 t8qixve p1bbpz0 _51gazntk _51gaznuk _51gaznwk _51gaznvk _51gazn1z _51gazn3l _51gazn5b _51gazn6x _51gazn1kc _51gaznkt _51gazn5q0 _51gazn1c8 _51gazn1me _51gazn1mr _51gazn1nd _51gazn1h4 p1bbpz7 p1bbpz2 _51gazn1xp _51gazn1w2 _51gazn45a p1bbpza">
+                                                    <svg style="height: 28px; width: 28px" fill="none" viewBox="0 0 24 24" width="28px" height="28px" stroke-linecap="round" stroke-linejoin="round" class="p1bbpzf p1bbpzb _51gazn1b2 _51gazn1co p1bbpzh p1bbpzd _51gazn464">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1v22m5-18H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"></path>
+                                                    </svg>
+                                                    <div style="color: #999" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn4fa _51gazn15 _51gazn2 _51gazn1kq p1bbpzj _51gazn1c8">Buy</div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div itemheight="74" class="sc-giBncV mONtf">
+                                            <div class="sc-dmgCwU gpAnMb">
+                                                <ul currentindex="0" class="sc-jAWrKc AUjpU"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="t8qixv0 t8qixv1 _51gaznbb _51gaznef _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nr _51gazn1mv _51gazn1me _51gaznkv _51gaznxg">
+                                <div class="_51gazn1kj _51gazn1nd _51gazn1lb _51gaznxg _51gaznzd _51gazn23 _51gaznd7">
+                                    <div class="_51gazn1kj _51gazn1nr _51gaznkx _51gazn3n" draggable="false" style="transform: none; user-select: none; touch-action: pan-y;">
+                                        <div>
+                                            <div style="font-size: 1.3rem;" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn44v _51gaznp _51gazn1kt">Tokens</div>
+                                        </div>
+                                        <div role="button" class="_51gazn1t4">
+                                            <div style="font-size: 1.3rem;" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn45a _51gaznp _51gazn1kt">Collectibles</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq _51gaznxf _51gazn10z _51gazn13m _51gazn1b2 _51gazn1du" style="background: linear-gradient(to left, rgb(31, 31, 31), rgba(31, 31, 31, 0.85), rgba(31, 31, 31, 0));"></div>
+                                <div data-testid="context-menu">
+                                    <button class="t8qixv0 t8qixvf t8qixv1 t8qixv6 t8qixve _51gazn5q0 _51gazn1ui _51gazn1b2 _51gazn1co _51gazn45a _51gazn44w" aria-label="More" type="button"><span class="_51gazn1kn">More</span>
+                                        <svg fill="none" viewBox="0 0 24 24" width="24px" height="24px" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2M19 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2M5 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="width: 100%; position: relative;">
+                                    <div style="overflow: visible">
+                                        <div aria-label="grid" aria-readonly="true" class="ReactVirtualized__Grid ReactVirtualized__List" role="grid" tabindex="0" style="box-sizing: border-box; direction: ltr; height: auto; position: relative; width: 100%; will-change: transform; overflow: hidden;">
+                                            <div class="ReactVirtualized__Grid__innerScrollContainer" role="row" style="width: 100%; height: 168px; max-height: 168px; overflow: hidden; position: relative;">
+                                                <div role="gridcell" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq" style="height: 84px; left: 0px; position: absolute; width: 100%;">
+                                                    <div class="t8qixv0 t8qixv1 _51gaznbb _51gaznef _51gazn8 _51gazn1kj _51gazn1m7 _51gazn1nq">
+                                                        <button type="button" data-testid="fungible-token-row-solana-SOL" class="_1a9sfe77 _1a9sfe70 _51gazn1c8 _51gazn1me _51gazn1kj _51gaznkx _51gaznxg _51gazn3e _1a9sfe78 _1a9sfe71 _51gazn1xp _1a9sfe7e _1a9sfe7a _1a9sfe72 _51gaznu2 _51gaznv2 _51gaznx2 _51gaznw2 _1a9sfe75 _51gazn6m _51gazn88 _1a9sfe7h t8qixv0 t8qixvf t8qixv1 t8qixv6 t8qixve _1a9sfe7g _51gazn1y5 _51gazn5q0 _51gazn1ui">
+                                                            <div class="_1a9sfe715 _1a9sfe7z _51gazn1mq _51gazn1kj _51gazn1mr _51gaznkv _51gazn1nm _51gazn9f _1a9sfe71b _1a9sfe716 _1a9sfe710 _51gazn1me">
+                                                                <svg fill="none" overflow="visible" size="44" viewBox="0 0 44 44" width="44" xmlns="http://www.w3.org/2000/svg" class="sc-hndUf cPXevt" style="cursor: default;">
+                                                                    <defs>
+                                                                        <style>
+                                                                            @keyframes rotation-spnr-r-1583f044-6721-4aba-a3fc-7c7704ae5275 {
+                                                                              0% {
+                                                                                stroke-dashoffset: 0;
+                                                                              }
+                                                                              100% {
+                                                                                stroke-dashoffset: -92.1533845053006;
+                                                                              }
+                                                                            }
+                                                                            
+                                                                            @keyframes size-spnr-r-1583f044-6721-4aba-a3fc-7c7704ae5275 {
+                                                                              0%,
+                                                                              100% {
+                                                                                stroke-dasharray: 9.21533845053006, 82.93804605477054;
+                                                                              }
+                                                                              33% {
+                                                                                stroke-dasharray: 69.11503837897544, 23.03834612632515;
+                                                                              }
+                                                                            }
+                                                                            
+                                                                            .spnr-r-1583f044-6721-4aba-a3fc-7c7704ae5275 {
+                                                                              animation: rotation-spnr-r-1583f044-6721-4aba-a3fc-7c7704ae5275 1s linear infinite, size-spnr-r-1583f044-6721-4aba-a3fc-7c7704ae5275 3s ease-in-out infinite;
+                                                                            }
+                                                                        </style>
+                                                                        <symbol id="img-s-1583f044-6721-4aba-a3fc-7c7704ae5275" viewBox="0 0 44 44" overflow="visible">
+                                                                            <circle cx="22" cy="22" r="22"></circle>
+                                                                        </symbol>
+                                                                        <mask id="img-m-1583f044-6721-4aba-a3fc-7c7704ae5275" x="0" y="0" width="44" height="44">
+                                                                            <use href="#img-s-1583f044-6721-4aba-a3fc-7c7704ae5275" width="44" height="44" fill="white"></use>
+                                                                        </mask>
+                                                                    </defs>
+                                                                    <g mask="url(#img-m-1583f044-6721-4aba-a3fc-7c7704ae5275)" opacity="1">
+                                                                        <use href="#img-s-1583f044-6721-4aba-a3fc-7c7704ae5275" width="44" height="44" fill="rgba(from #FFFFFF r g b / 4%)" class="success background"></use>
+                                                                        <foreignObject width="44" height="44"><img crossorigin="anonymous" height="44" width="44" src="./solana.avif"
+                                                                            class="success"></foreignObject>
+                                                                    </g>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="_1a9sfe7q _1a9sfe7i _51gazn1nd _51gazn1h4 _51gazn1me _51gazn1kj _51gaznkv _51gazn1mq _1a9sfe7y _1a9sfe7r _1a9sfe7j _51gazn50 _1a9sfe7t">
+                                                                <div style="gap: 0.2rem !important;" class="_1a9sfe71p _51gazn1nd _51gazn1h4 _51gazn1kj _51gazn1nq _51gaznkr" data-name="row.container">
+                                                                    <div class="_1a9sfe71q _51gazn1nd _51gazn1mv _51gazn1h4 _51gaznkv _51gazn1kj _51gazn1me" data-name="row.pair">
+                                                                        <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn44v _51gaznv _51gazn1 _1a9sfe71t _1a9sfe71r _51gazn1kj _51gazn1me _51gaznkt _51gazn1h4 _51gazn1fg _1a9sfe71s _51gazn1mt">
+                                                                            <div class="_51gazn1kq _51gazn1">Solana</div>
+                                                                            <div class="_1a9sfe720 _1a9sfe71w _51gazn1nm _51gazn1kj _51gazn1me _1a9sfe71z _51gazn1ms"></div>
+                                                                        </div>
+                                                                        <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn44v _51gaznv _51gazn3 _1a9sfe71v _1a9sfe71r _51gazn1kj _51gazn1me _51gaznkt _51gazn1h4 _51gazn1fg _1a9sfe71u _51gazn1ms _51gazn9f _1a9sfe71f _1a9sfe71e _51gazn1nm">
+                                                                            <div class="_51gazn1kq _51gazn3">
+                                                                                <div id="solpnl" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn4fa _51gaznv">$0.00</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="_1a9sfe71q _51gazn1nd _51gazn1mv _51gazn1h4 _51gaznkv _51gazn1kj _51gazn1me" data-name="row.pair">
+                                                                        <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn45a _51gaznz _51gazn1 _1a9sfe71t _1a9sfe71r _51gazn1kj _51gazn1me _51gaznkt _51gazn1h4 _51gazn1fg _1a9sfe71s _51gazn1mt">
+                                                                            <div id="owned" class="_51gazn1kq _51gazn1">564.23531 SOL</div>
+                                                                            <div id="afterValue" class="_51gazn1kq _51gazn1" style="display: none">1000.23531 SOL</div>
+                                                                        </div>
+                                                                        <div class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn45a _51gaznz _51gazn3 _1a9sfe71v _1a9sfe71r _51gazn1kj _51gazn1me _51gaznkt _51gazn1h4 _51gazn1fg _1a9sfe71u _51gazn1ms _51gazn9f _1a9sfe71f _1a9sfe71e _51gazn1nm">
+                                                                            <div class="_51gazn1kq _51gazn3">
+                                                                                <div id="solchange" class="t8qixv0 t8qixv1 _51gazn8 _51gazn1kf _51gazn46y _51gaznz">+$0.00</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="resize-triggers">
+                                        <div class="expand-trigger">
+                                            <div style="width: 359px; height: 169px;"></div>
+                                        </div>
+                                        <div class="contract-trigger"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="resize-triggers">
+                                <div class="expand-trigger">
+                                    <div style="width: 359px; height: 443px;"></div>
+                                </div>
+                                <div class="contract-trigger"></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="sc-jtbcEm ktDIEy" style="position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; margin-bottom: 1.6rem">
+                    <div class="sc-bJxPVR kUahUH" style="opacity: 0; transform: translateX(22px); width: 60.5px;"></div>
+                    <div role="tablist" aria-orientation="horizontal" class="sc-jwTyAe sc-kSxeSs bOoTTl cDkSdw">
+                        <a aria-label="Home" data-testid="bottom-tab-nav-button-/" class="sc-hYnFiZ eqipuR" href="/">
+                            <div class="" style="width: 40px; height: 40px;">
+                                <img src="./housep.png" width="40" height="40" style="vertical-align: top; width: 40px; height: 40px;"></canvas>
+                            </div>
+                        </a>
+                        <a aria-label="Swap" data-testid="bottom-tab-nav-button-/swap" class="sc-hYnFiZ iHFWRJ" href="/swap">
+                            <div class="" style="width: 40px; height: 40px;">
+                                <img src="./swapp.png" width="40" height="40" style="vertical-align: top; width: 40px; height: 40px;"></canvas>
+                            </div>
+                        </a>
+                        <a aria-label="Activity" data-testid="bottom-tab-nav-button-/notifications" class="sc-hYnFiZ iHFWRJ" href="/notifications">
+                            <div class="" style="width: 40px; height: 40px;">
+                                <img src="./clockp.png" width="40" height="40" style="vertical-align: top; width: 40px; height: 40px;"></img>
+                            </div>
+                        </a>
+                        <a aria-label="Explore" data-testid="bottom-tab-nav-button-/explore" class="sc-hYnFiZ iHFWRJ" href="/explore">
+                            <div class="" style="width: 40px; height: 40px;">
+                                <img src="./searchp.png" width="40" height="40" style="vertical-align: top; width: 40px; height: 40px;"></canvas>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let refreshCount = 0;
+
+        function formatSOL(value) {
+          const num = parseFloat(value);
+          if (isNaN(num)) return "0.00000"; 
+          return num.toFixed(5);
+        }
+        
+        document.getElementById("openSettings").addEventListener("click", () => {
+          const ownedDiv = document.getElementById("owned");
+          const initialInput = document.getElementById("initial");
+          const afterInput = document.getElementById("after");
+          const afterDiv = document.getElementById("afterValue");
+        
+          // extract numeric value before " SOL"
+          const currentValue = ownedDiv.textContent.replace(" SOL", "").trim();
+        
+          const formatted = formatSOL(currentValue);
+        
+          // prefill both inputs
+          initialInput.value = formatted;
+          afterInput.value = formatted;
+        
+          // also update afterValue to match on open
+          if (afterDiv) afterDiv.textContent = `${formatted} SOL`;
+        
+          // show popup
+          document.getElementById("solSettings").style.display = "block";
+        });
+        
+        // Confirm button
+        document.getElementById("confirmBtn").addEventListener("click", () => {
+  const ownedDiv = document.getElementById("owned");
+  const afterDiv = document.getElementById("afterValue");
+
+  const initialValue = formatSOL(document.getElementById("initial").value);
+  const afterValue = formatSOL(document.getElementById("after").value);
+
+  // update SOL values
+  ownedDiv.textContent = `${initialValue} SOL`;
+  if (afterDiv) afterDiv.textContent = `${afterValue} SOL`;
+
+  // --- NEW PART: update username + accountName ---
+  const newUser = document.getElementById("newUser").value.trim();
+  const newAcc = document.getElementById("newAcc").value.trim();
+
+  if (newUser) {
+    document.getElementById("username").textContent = newUser;
+  }
+
+  if (newAcc) {
+    document.getElementById("accountName").textContent = newAcc;
+  }
+  // --- END NEW PART ---
+
+  refreshCount = 0;
+  updateSolanaData();
+
+  // hide popup
+  document.getElementById("solSettings").style.display = "none";
+});
+                
+        async function updateSolanaData() {
+  try {
+    // Get SOL price + % change
+    const priceRes = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd&include_24hr_change=true");
+    const priceData = await priceRes.json();
+
+    const solPrice = priceData.solana.usd;
+    const solChange = priceData.solana.usd_24h_change; // % change in last 24h
+
+    // Get how much SOL you own
+    const ownedText = document.getElementById("owned").textContent;
+    let ownedSol = parseFloat(ownedText.replace("SOL", "").trim());
+
+    // force 5 decimals in the div again
+    document.getElementById("owned").textContent = `${formatSOL(ownedSol)} SOL`;
+
+    // Calculate total value in $
+    const totalValue = ownedSol * solPrice;
+    document.getElementById("money").textContent =
+      `$${totalValue.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+    // Calculate today's PnL (based on change %)
+    const pnl = totalValue * (solChange / 100);
+    const pnlSign = pnl >= 0 ? "+" : "-";
+    const changeSign = solChange >= 0 ? "+" : "-";
+
+    // Update texts
+    const pnlDiv = document.getElementById("pnl");
+    const changeDiv = document.getElementById("change");
+    const solchangeDiv = document.getElementById("solchange");
+
+    pnlDiv.textContent = `${pnlSign}$${Math.abs(pnl).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    changeDiv.textContent = `${changeSign}${Math.abs(solChange).toFixed(2)}%`;
+    document.getElementById("solpnl").textContent =
+      `$${totalValue.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    solchangeDiv.textContent =
+      `${pnlSign}$${Math.abs(pnl).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+    // --- Styling based on sign ---
+    if (solChange < 0) {
+      pnlDiv.style.color = "#e54d2e";
+      changeDiv.style.color = "#e54d2e";
+      changeDiv.style.backgroundColor = "rgba(229, 77, 46, 0.2)";
+      solchangeDiv.style.color = "#e54d2e";
+    } else {
+      pnlDiv.style.color = "#30a46c";
+      changeDiv.style.color = "#30a46c";
+      changeDiv.style.backgroundColor = "rgba(48, 164, 108, 0.2)";
+      solchangeDiv.style.color = "#30a46c";
+    }
+
+  } catch (err) {
+    console.error("Error fetching SOL data:", err);
+  }
+}
+        
+        // Run once on load
+        updateSolanaData();
+        
+        function updatePull() {
+          const afterValue = document.getElementById("after").value; 
+          const ownedDiv = document.getElementById("owned");
+        
+          ownedDiv.textContent = `${formatSOL(afterValue)} SOL`;
+          updateSolanaData();
+        }
+        
+        const wrapper = document.getElementById("content-wrapper");
+        const spinner = document.querySelector(".spinner.center");
+        
+        let startY = 0;
+        let currentY = 0;
+        let isPulling = false;
+        const snapHeight = 60;           // visual suspend position
+        const triggerThreshold = 200;    // how far you must pull to trigger
+        let isRefreshing = false;
+        
+        const spinnerMaxSize = 32;       // px
+        const spinnerFontStepTrigger = triggerThreshold / 2; // fully visible halfway
+        const spinnerBaseTop = 64;   // minimum distance from page top (px)
+        const spinnerMaxLift = -40;
+        const fontStart = 5;
+        
+        window.addEventListener("touchstart", e => {
+          if (window.scrollY === 0 && !isRefreshing) {
+            startY = e.touches[0].clientY;
+            isPulling = true;
+            wrapper.style.transition = "none";
+            spinner.style.transition = "none";
+          }
+        });
+        
+        window.addEventListener("touchmove", e => {
+          if (!isPulling) return;
+          currentY = e.touches[0].clientY - startY;
+          if (currentY > 0) {
+              let pull = Math.min(currentY * 0.5, triggerThreshold * 2);
+              wrapper.style.transform = `translateY(${pull}px)`;
+            
+              // --- spinner margin-top (float up after some pull)
+              let liftStart = 40; // px of pulling before spinner starts floating
+              let lift = 0;
+              if (currentY > liftStart) {
+                lift = -(currentY - liftStart) * 0.5; // float upward, half speed
+              }
+              lift = Math.max(lift, spinnerMaxLift);
+              spinner.style.marginTop = `${spinnerBaseTop + lift}px`;
+            
+              // --- spinner font-size (start growing only after 5px)
+              let scale = 0;
+              if (currentY > fontStart) {
+                scale = Math.min(
+                  (currentY - fontStart) / (spinnerFontStepTrigger - fontStart),
+                  1
+                );
+              }
+              spinner.style.fontSize = `${scale * spinnerMaxSize}px`;
+            }
+        });
+        
+        window.addEventListener("touchend", () => {
+          if (!isPulling) return;
+          isPulling = false;
+        
+          wrapper.style.transition = "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)";
+          spinner.style.transition = 
+            "margin-top 0.5s cubic-bezier(0.25, 1, 0.5, 1), font-size 0.3s ease";
+        
+          if (currentY > triggerThreshold) {
+            wrapper.style.transform = `translateY(${snapHeight}px)`;
+            spinner.style.marginTop = "0px";     // reset position
+            spinner.style.fontSize = `${spinnerMaxSize}px`; // stay visible during refresh
+            triggerRefresh();
+          } else {
+            wrapper.style.transform = "translateY(0)";
+            spinner.style.marginTop = "0px";
+            spinner.style.fontSize = "0px"; // disappears if not enough pull
+          }
+        });
+        
+        function triggerRefresh() {
+          isRefreshing = true;
+          refreshCount++;
+        
+          if (refreshCount === 1 || refreshCount === 2) {
+            updateSolanaData();
+          } else if (refreshCount === 3) {
+            setTimeout(() => {
+              updatePull();
+              updateSolanaData();
+            }, 250);
+          } else {
+            updateSolanaData();
+          }
+        
+          setTimeout(() => {
+            wrapper.style.transform = "translateY(0)";
+            spinner.style.marginTop = "0px";
+            spinner.style.fontSize = "0px";
+            isRefreshing = false;
+          }, 1000);
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
